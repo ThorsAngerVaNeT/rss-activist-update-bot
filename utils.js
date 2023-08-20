@@ -1,7 +1,3 @@
-export const isRoleAdded = (role, oldMember, newMember) => !oldMember.roles.cache.has(role) && newMember.roles.cache.has(role);
-
-export const isRoleRemoved = (role, oldMember, newMember) => oldMember.roles.cache.has(role) && !newMember.roles.cache.has(role);
-
 const githubUsernameRegex = /@\s?[a-z\d](?:[a-z\d]|-(?=[a-z\d])){0,38}/i;
 
 const getGithubIdFromDiscordNickname = nickname => {
