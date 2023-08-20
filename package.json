@@ -1,5 +1,5 @@
 {
-  "name": "rss-app-activist-update-bot",
+  "name": "rss-activist-update-bot",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -7,8 +7,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["RSSchool", "Discord"],
+  "author": "Vadzim Antonau",
   "license": "ISC",
   "dependencies": {
     "discord.js": "^14.13.0",

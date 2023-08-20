@@ -1,3 +1,7 @@
+# rss-activist-update-bot
+
+This is a Discord bot to update user entity in database when role has been added to/removed from user in Discord.
+
 ## Discord Bot settings
 
 1) In `Privileged Gateway Intents` turn on `Server Member Intent`.
