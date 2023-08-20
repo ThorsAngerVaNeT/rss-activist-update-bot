@@ -1,13 +1,16 @@
 {
   "name": "rss-activist-update-bot",
   "version": "1.0.0",
-  "description": "",
+  "description": "This is a Discord bot to update user entity in database when role has been added to/removed from user in Discord.",
   "main": "index.js",
   "type": "module",
   "scripts": {
     "start": "node index.js"
   },
-  "keywords": ["RSSchool", "Discord"],
+  "keywords": [
+    "RSSchool",
+    "Discord"
+  ],
   "author": "Vadzim Antonau",
   "license": "ISC",
   "dependencies": {
