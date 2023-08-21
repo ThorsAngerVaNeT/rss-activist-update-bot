@@ -20,8 +20,7 @@ client.on('guildMemberUpdate', async (oldMember, newMember) => {
   }
 
   const user = getUserInfo(newMember);
-  const activist = isRoleAdded;
-  await updateUser(user, activist);
+  await updateUser(user, isRoleAdded);
 });
 
 client.on('ready', () => {

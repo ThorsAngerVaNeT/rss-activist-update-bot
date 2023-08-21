@@ -10,10 +10,10 @@ const pool = new pg.Pool({
   connectionTimeoutMillis: 2000,
 });
 
-export const updateUser = async (discordUser, activist) => {
+export const updateUser = async (discordUser, isActivist) => {
   try {
     await pool.query(`UPDATE "user" SET "activist" = $1 WHERE discord->>'id' = $2 OR "githubId" = $3`, [
-      activist,
+      isActivist,
       discordUser.id,
       discordUser.githubId,
     ]);
