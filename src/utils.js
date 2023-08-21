@@ -5,7 +5,7 @@ const getGithubIdFromDiscordNickname = nickname => {
     return;
   }
 
-  return nickname.match(githubUsernameRegex)[0].replace('@', '') ?? nickname.replace(' ', '');
+  return nickname.match(githubUsernameRegex)?.[0].replace('@', '') ?? nickname.replace(' ', '');
 };
 
 export const getUserInfo = member => {
@@ -15,4 +15,21 @@ export const getUserInfo = member => {
     discriminator: member.user.discriminator,
     githubId: getGithubIdFromDiscordNickname(member.nickname) ?? member.user.username,
   };
+};
+
+export const synchronize = async client => {
+  try {
+    const guilds = client.guilds.cache;
+    const guildActivists = await Promise.all(
+      guilds.map(async guild => {
+        const members = await guild.members.fetch();
+        return members.filter(member => member.roles.cache.has(ROLE_ID));
+      })
+    );
+    const mergedCollections = new Map(guildActivists.reduce((accumulator, members) => [...accumulator, ...members], []));
+    const activists = Array.from(mergedCollections).map(([, member]) => getUserInfo(member));
+    await Promise.all(activists.map(activist => updateUser(activist, true)));
+  } catch (error) {
+    console.log('error: ', error);
+  }
 };

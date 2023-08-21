@@ -1,6 +1,6 @@
 import { Client, GatewayIntentBits, Partials } from 'discord.js';
 import 'dotenv/config';
-import { getUserInfo } from './utils.js';
+import { getUserInfo, synchronize } from './utils.js';
 import { updateUser } from './db.js';
 
 const TOKEN = process.env.TOKEN;
@@ -23,8 +23,11 @@ client.on('guildMemberUpdate', async (oldMember, newMember) => {
   await updateUser(user, isRoleAdded);
 });
 
-client.on('ready', () => {
+client.on('ready', async discordClient => {
   console.log(`Logged in as ${client.user.tag}!`);
+  if (process.env.SYNCHRONIZE === 'true') {
+    await synchronize(discordClient);
+  }
 });
 
 client.login(TOKEN);
